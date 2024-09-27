@@ -1,6 +1,7 @@
 import CreateCategory from "../components/CreateCategory";
 import CreateAuthor from "../components/CreateAuthor";
 import DataTable from "../components/DataTable";
+import GlobalLoading from "../components/GlobalLoading";
 
 const Home = () => {
   return (
