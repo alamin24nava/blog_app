@@ -1,11 +1,22 @@
+import { useDispatch, useSelector } from "react-redux";
+import {categoriesGetuseSelector, getCategories} from "../features/categories/categoriesSlice"
+import { useEffect } from "react";
 const CreateAuthor = () => {
+  const {categoryList} = useSelector(categoriesGetuseSelector)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getCategories())
+  },[dispatch])
   return (
     <>
       <form className="flex gap-6">
         <select className="select select-bordered w-full max-w-xs">
-          <option disabled selected>-- Choose Category --</option>
-          <option>Han Solo</option>
-          <option>Greedo</option>
+          <option >-- Choose Category --</option>
+          {
+            categoryList?.map((item, index)=>
+              <option key={index}>{item.name}</option>            
+            )
+          }
         </select>
         <input
           type="text"
