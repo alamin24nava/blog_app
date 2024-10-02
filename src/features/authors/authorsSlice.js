@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// const { REACT_APP_API_BASE_URL } = import.meta.env;
-const REACT_APP_API_BASE_URL = "http://localhost:3000";
+const { REACT_APP_API_BASE_URL } = import.meta.env;
 const initialState = {
   authorList: [],
   editableAuthor:null,

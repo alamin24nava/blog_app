@@ -9,7 +9,6 @@ const CreateCategory = ({
   _onCategoryName,
   _onSetCategoryName,
 }) => {
-  console.log(_onEditableCategory)
 
 
 

@@ -2,6 +2,7 @@ import CreateCategory from "../components/CreateCategory";
 import CreateAuthor from "../components/CreateAuthor";
 import DataTable from "../components/DataTable";
 import GlobalLoading from "../components/GlobalLoading";
+import DelayedSearch from "../components/DelayedSearch"
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCategories,
@@ -49,6 +50,7 @@ const Home = () => {
             />
           </div>
           <div className="border p-6 rounded-md w-full">
+            <DelayedSearch/>  
             <DataTable
               _onHandleEdit={handleEdit}
               _onHandleDelete={handleDelete}

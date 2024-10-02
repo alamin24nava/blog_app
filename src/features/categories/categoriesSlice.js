@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const { REACT_APP_API_BASE_URL } = import.meta.env;
-console.log(import.meta.env)
-// console.log(REACT_APP_API_BASE_URL)
-// const REACT_APP_API_BASE_URL = "http://localhost:3000";
+console.log(REACT_APP_API_BASE_URL)
 const initialState = {
   categoryList: [],
   categoryId: "",
@@ -13,6 +11,7 @@ const initialState = {
 export const getCategories = createAsyncThunk(
   "categories/getCategories",
   async () => {
+
     const response = await fetch(`${REACT_APP_API_BASE_URL}/categories`);
     return response.json();
   }
