@@ -13,17 +13,19 @@ export const getAuthors = createAsyncThunk(
   }
 );
 
-// export const postCategories = createAsyncThunk(
-//   "categories/postCategories",
-//   async (newCategory) => {
-//     const response = await fetch(`${REACT_APP_API_BASE_URL}/categories`, {
-//       method:"POST",
-//       headers:{'Content-Type': 'application/json'},
-//       body:JSON.stringify(newCategory)
-//     });
-//     return response.json();
-//   }
-// );
+export const postAuthors = createAsyncThunk(
+  "authors/postAuthors",
+  async (newAuthor) => {
+    console.log(authors)
+    const response = await fetch(`${REACT_APP_API_BASE_URL}/authors`, {
+      method:"POST",
+      headers:{'Content-Type': 'application/json'},
+      body:JSON.stringify(newAuthor)
+    });
+    return response.json();
+  }
+);
+
 // export const updateCategories = createAsyncThunk(
 //   "categories/updateCategories",
 //   async (editableCategory) => {

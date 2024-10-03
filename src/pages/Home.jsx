@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import GlobalLoading from "../components/GlobalLoading";
+import DropDownMenu from "../components/DropDownMenu";
 
 const Home = () => {
   const [editableCategory, setEditableCategory] = useState(null);
@@ -47,13 +48,20 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (categoryName.trim() == "") {
+
+    if (categoryName.trim() === "") {
       return toast.error("Please Provide Something!");
     }
-    const newCategory = {
-      name: categoryName,
-    };
+
+    const newCategory = { name: categoryName };
+
     if (editableCategory == null) {
+      const isDuplicate = categoryList.find(
+        (item) => item.name === categoryName
+      );
+      if (isDuplicate) {
+        return toast.error("Already Added This Category");
+      }
       dispatch(postCategories(newCategory));
       toast.success("Successfully created!");
     } else {
@@ -61,10 +69,12 @@ const Home = () => {
         id: editableCategory.id,
         name: categoryName,
       };
+
       dispatch(updateCategories(updateCategory));
       toast.success("Successfully Updated!");
       setEditableCategory(null);
     }
+
     setCategoryName("");
   };
 
@@ -94,7 +104,8 @@ const Home = () => {
           </div>
           <div className="flex gap-6">
             <div className="border p-6 rounded-md w-full">
-              <CreateAuthor/>
+              <CreateAuthor />
+              <DropDownMenu _dropDownItems={authorList}/>
             </div>
             <div className="border p-6 rounded-md w-full">
               <DataTable

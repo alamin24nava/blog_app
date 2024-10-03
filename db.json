@@ -5,22 +5,29 @@
       "name": "alamin"
     },
     {
-      "id": 2,
-      "name": "al manub"
-    },
-    {
       "id": 3,
-      "name": "salman"
+      "name": "ahnaf  tansif"
     },
     {
-      "id": 4,
-      "name": "muktadir"
+      "name": "rrrrrrr",
+      "id": 6
     }
   ],
   "authors": [
     {
-      "name": "sdfsdf",
-      "id": 1
+      "id": 3,
+      "name": "salman",
+      "category_id": 1
+    },
+    {
+      "id": 4,
+      "name": "sakin",
+      "category_id": 1
+    },
+    {
+      "id": 6,
+      "name": "tamin",
+      "category_id": 1
     }
   ],
   "tags": [

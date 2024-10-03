@@ -14,7 +14,8 @@ const DataTable = ({ _dataLists, _onHandleDelete, _onHandleEdit, _title }) => {
               <thead>
                 <tr>
                   <th>S/N</th>
-                  <th>Name</th>
+                  <th>Category Name</th>
+                  <th>Author Name</th>
                   <th className="text-end">Action</th>
                 </tr>
               </thead>
@@ -22,6 +23,7 @@ const DataTable = ({ _dataLists, _onHandleDelete, _onHandleEdit, _title }) => {
                 {_dataLists.map((item, index) => (
                   <tr key={index}>
                     <th>{index + 1}</th>
+                    <td>{item.name}</td>
                     <td>{item.name}</td>
                     <td>
                       <div className="flex gap-3 justify-end">
