@@ -15,9 +15,9 @@ import { defineConfig } from "vite";
 
 export default defineConfig(() => {
     return {
-        // server: {
-        //     port: 9000,
-        // },
+        server: {
+            port: 9000,
+        },
         build: {
             outDir: "build",
         },

@@ -1,17 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const { REACT_APP_API_BASE_URL } = import.meta.env;
-console.log(REACT_APP_API_BASE_URL)
 const initialState = {
   categoryList: [],
-  categoryId: "",
-  editableCategory: null,
   isLoading: false,
   isError: false,
 };
 export const getCategories = createAsyncThunk(
   "categories/getCategories",
   async () => {
-
     const response = await fetch(`${REACT_APP_API_BASE_URL}/categories`);
     return response.json();
   }
@@ -31,7 +27,7 @@ export const postCategories = createAsyncThunk(
 export const updateCategories = createAsyncThunk(
   "categories/updateCategories",
   async (editableCategory) => {
-    const response = await fetch(`${REACT_APP_API_BASE_URL}/categories`, {
+    const response = await fetch(`${REACT_APP_API_BASE_URL}/categories/${editableCategory.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editableCategory),
@@ -41,7 +37,7 @@ export const updateCategories = createAsyncThunk(
 );
 
 export const deleteCategories = createAsyncThunk(
-  "categories/deleteCategories",
+  "authors/deleteCategories",
   async (id) => {
     await fetch(`${REACT_APP_API_BASE_URL}/categories/${id}`, {
       method: "DELETE",
@@ -53,11 +49,6 @@ export const deleteCategories = createAsyncThunk(
 export const categoriesSlice = createSlice({
   name: "categories",
   initialState,
-  reducers: {
-    EDITABLE_CATEGORY: (state, action) => {
-      state.editableCategory = action.payload;
-    },
-  },
   extraReducers: (builder) => {
     builder.addCase(getCategories.pending, (state, action) => {
       state.isError = false;
@@ -110,6 +101,8 @@ export const categoriesSlice = createSlice({
     builder.addCase(updateCategories.fulfilled, (state, action) => {
       state.isError = false;
       state.isLoading = false;
+      const findIndex = state.categoryList.findIndex((item)=> item.id === action.payload.id)
+      state.categoryList[findIndex].name = action.payload.name
     });
     builder.addCase(updateCategories.rejected, (state, action) => {
       state.isError = true;
@@ -119,6 +112,6 @@ export const categoriesSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { EDITABLE_CATEGORY } = categoriesSlice.actions;
+export const { } = categoriesSlice.actions;
 export const categoriesGetuseSelector = (state) => state.categories;
 export default categoriesSlice.reducer;

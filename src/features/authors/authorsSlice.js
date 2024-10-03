@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const { REACT_APP_API_BASE_URL } = import.meta.env;
 const initialState = {
   authorList: [],
-  editableAuthor:null,
   isLoading: false,
   isError: false,
 };
@@ -37,13 +36,13 @@ export const getAuthors = createAsyncThunk(
 //   }
 // );
 
-// export const deleteCategories = createAsyncThunk(
-//   "categories/deleteCategories",
-//   async (id) => {
-//     const response = await fetch(`http://localhost:3000/categories/${id}`, {method:"DELETE"})
-//     return id
-//   }
-// );
+export const deleteAuthors = createAsyncThunk(
+  "authors/deleteAuthors",
+  async (id) => {
+    await fetch(`${REACT_APP_API_BASE_URL}/authors/${id}`, {method:"DELETE"})
+    return id
+  }
+);
 
 export const authorsSlice = createSlice({
   name: "authors",
@@ -77,20 +76,19 @@ export const authorsSlice = createSlice({
     //   state.isLoading = false;
     // });
     // // deleteCategories
-    // builder.addCase(deleteCategories.pending, (state) => {
-    //   state.isError = false;
-    //   state.isLoading = true;
-    // });
-    // builder.addCase(deleteCategories.fulfilled, (state, action) => {
-    //   state.isError = false;
-    //   state.isLoading = false;
-    //   state.categoryList = state.categoryList.filter((item)=> item.id !== action.payload)
-    //   console.log(action.payload)
-    // });
-    // builder.addCase(deleteCategories.rejected, (state, action) => {
-    //   state.isError = true;
-    //   state.isLoading = false;
-    // });
+    builder.addCase(deleteAuthors.pending, (state) => {
+      state.isError = false;
+      state.isLoading = true;
+    });
+    builder.addCase(deleteAuthors.fulfilled, (state, action) => {
+      state.isError = false;
+      state.isLoading = false;
+      state.authorList = state.authorList.filter((item)=> item.id !== action.payload)
+    });
+    builder.addCase(deleteAuthors.rejected, (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+    });
     // // UpdateCategories
     // builder.addCase(updateCategories.pending, (state) => {
     //   state.isError = false;

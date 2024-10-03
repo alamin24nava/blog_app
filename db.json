@@ -1,62 +1,28 @@
 {
   "categories": [
     {
-      "name": "asda asd",
-      "categoryId": "92659cff-3e29-4ed0-8787-307287b67b01",
-      "id": 1
+      "id": 1,
+      "name": "alamin"
     },
     {
-      "name": "adsferter",
-      "categoryId": "c4ef4a5c-a4dc-4977-aedf-7c39267c91a5",
-      "id": 2
+      "id": 2,
+      "name": "al manub"
     },
     {
-      "name": "uyjfgbnh",
-      "categoryId": "85c28383-f295-469c-a4b9-201e77235583",
-      "id": 3
+      "id": 3,
+      "name": "salman"
     },
     {
-      "name": " gtn ftgy",
-      "categoryId": "f20e9af8-7814-4f19-bd4e-0025d73fe2ce",
-      "id": 4
-    },
-    {
-      "name": "adsferter",
-      "categoryId": "410c8424-6e24-49b3-be2a-4015bc98ae90",
-      "id": 5
-    },
-    {
-      "name": "uyjfgbnh",
-      "categoryId": "750344d9-d4fd-45fb-bf62-52dacf74b61a",
-      "id": 6
-    },
-    {
-      "name": "uyjfgbnh",
-      "categoryId": "4368c9d5-6d53-48e5-8a82-6c736ce94f99",
-      "id": 7
-    },
-    {
-      "name": "asas",
-      "categoryId": "9091fbe8-fdc6-4fa4-8f22-a91599eb3f46",
-      "id": 8
-    },
-    {
-      "name": "adsa",
-      "categoryId": "8a4d12d6-0592-4ebf-8e01-84f31a61e380",
-      "id": 9
-    },
-    {
-      "name": "asas",
-      "categoryId": "00dde491-9147-4113-a852-5419dd87de2c",
-      "id": 10
-    },
-    {
-      "name": "asdasdasda",
-      "categoryId": "b00e4c83-784f-458b-af47-076cf669beb7",
-      "id": 11
+      "id": 4,
+      "name": "muktadir"
     }
   ],
-  "authors": [],
+  "authors": [
+    {
+      "name": "sdfsdf",
+      "id": 1
+    }
+  ],
   "tags": [
     {
       "id": 4,

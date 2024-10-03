@@ -4,9 +4,7 @@ import { useEffect } from "react";
 const CreateAuthor = () => {
   const {categoryList} = useSelector(categoriesGetuseSelector)
   const dispatch = useDispatch()
-  useEffect(()=>{
-    dispatch(getCategories())
-  },[dispatch])
+
   return (
     <>
       <form className="flex gap-6">
