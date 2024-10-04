@@ -16,7 +16,6 @@ export const getAuthors = createAsyncThunk(
 export const postAuthors = createAsyncThunk(
   "authors/postAuthors",
   async (newAuthor) => {
-    console.log(authors)
     const response = await fetch(`${REACT_APP_API_BASE_URL}/authors`, {
       method:"POST",
       headers:{'Content-Type': 'application/json'},
@@ -64,19 +63,19 @@ export const authorsSlice = createSlice({
       state.isLoading = false;
     });
     // // postCategories
-    // builder.addCase(postCategories.pending, (state, action) => {
-    //   state.isError = false;
-    //   state.isLoading = true;
-    // });
-    // builder.addCase(postCategories.fulfilled, (state, action) => {
-    //   state.isError = false;
-    //   state.isLoading = false;
-    //   state.categoryList.push(action.payload);
-    // });
-    // builder.addCase(postCategories.rejected, (state, action) => {
-    //   state.isError = true;
-    //   state.isLoading = false;
-    // });
+    builder.addCase(postAuthors.pending, (state, action) => {
+      state.isError = false;
+      state.isLoading = true;
+    });
+    builder.addCase(postAuthors.fulfilled, (state, action) => {
+      state.isError = false;
+      state.isLoading = false;
+      state.authorList.push(action.payload);
+    });
+    builder.addCase(postAuthors.rejected, (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+    });
     // // deleteCategories
     builder.addCase(deleteAuthors.pending, (state) => {
       state.isError = false;

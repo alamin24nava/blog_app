@@ -2,32 +2,21 @@
   "categories": [
     {
       "id": 1,
-      "name": "alamin"
+      "name": "alamin M"
     },
     {
-      "id": 3,
-      "name": "ahnaf  tansif"
-    },
-    {
-      "name": "rrrrrrr",
-      "id": 6
+      "id": 2,
+      "name": "zxczx asas"
     }
   ],
   "authors": [
     {
-      "id": 3,
-      "name": "salman",
-      "category_id": 1
+      "name": "asdas",
+      "id": 7
     },
     {
-      "id": 4,
-      "name": "sakin",
-      "category_id": 1
-    },
-    {
-      "id": 6,
-      "name": "tamin",
-      "category_id": 1
+      "name": "asdasasas",
+      "id": 8
     }
   ],
   "tags": [

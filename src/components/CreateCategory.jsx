@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import {postCategories, updateCategories} from "../features/categories/categoriesSlice"
 
-const CreateCategory = ({_onHandleSubmit, _setInputValue, _inputValue, _editableCategory}) => {
+const CreateCategory = ({_onHandleSubmit, _setInputValue, _inputValue, _editableCategory,_buttonTitle, ...restProps}) => {
   return (
     <>
       <form onSubmit={_onHandleSubmit} className="flex gap-6">
@@ -13,10 +13,10 @@ const CreateCategory = ({_onHandleSubmit, _setInputValue, _inputValue, _editable
           onChange={(e) => _setInputValue(e.target.value)}
           value={_inputValue}
           type="text"
-          placeholder="Category Name..."
           className="input input-bordered w-full max-w-xs"
+          {...restProps}
         />
-        <button className="btn btn-primary">{_editableCategory == null ? "Create Category":"Updated Category"}</button>
+        <button className="btn btn-primary">{_editableCategory == null ? "Create":"Updated"}</button>
       </form>
     </>
   );

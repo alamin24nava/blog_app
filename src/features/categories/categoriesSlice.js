@@ -5,6 +5,8 @@ const initialState = {
   isLoading: false,
   isError: false,
 };
+
+
 export const getCategories = createAsyncThunk(
   "categories/getCategories",
   async () => {
