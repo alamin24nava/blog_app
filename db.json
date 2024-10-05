@@ -1,31 +1,219 @@
 {
   "categories": [
     {
-      "id": 1,
-      "name": "alamin M"
+      "name": "Food",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "zxczx asas"
+      "name": "Sports",
+      "id": 2
+    },
+    {
+      "name": "Movies",
+      "id": 3
     }
   ],
   "authors": [
     {
-      "name": "asdas",
-      "id": 7
+      "name": "nanu 1",
+      "id": 1
     },
     {
-      "name": "asdasasas",
-      "id": 8
+      "name": "Alamin",
+      "category_id": 1,
+      "id": 2
+    },
+    {
+      "name": "jibon kG",
+      "category_id": 2,
+      "id": 3
+    },
+    {
+      "id": 4,
+      "name": "salim",
+      "category_id": 1
     }
   ],
   "tags": [
     {
-      "id": 4,
-      "name": "lily"
+      "name": "dfd",
+      "id": 1
+    },
+    {
+      "name": "as",
+      "id": 2
+    },
+    {
+      "name": "rr",
+      "id": 3
+    },
+    {
+      "name": "er",
+      "id": 4
     }
   ],
-  "posts": [],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Exploring the Depths of the Ocean",
+      "description": "A journey into the mysteries of the deep sea, revealing its wonders and the creatures that inhabit it.",
+      "category_id": 1,
+      "author_id": 1,
+      "tags": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 2,
+      "title": "The Future of Renewable Energy",
+      "description": "An analysis of emerging technologies in renewable energy and their potential impact on the environment.",
+      "category_id": 2,
+      "author_id": 1,
+      "tags": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Traveling Through Time: The History of the Renaissance",
+      "description": "A detailed look at the Renaissance period and its influence on art, culture, and science.",
+      "category_id": 1,
+      "author_id": 2,
+      "tags": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": 4,
+      "title": "The Art of Minimalism",
+      "description": "Exploring the principles of minimalism in design and lifestyle, and how it can enhance well-being.",
+      "category_id": 3,
+      "author_id": 3,
+      "tags": [
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Cooking with Seasonal Ingredients",
+      "description": "Tips and recipes for cooking with fresh, seasonal produce to enhance flavor and nutrition.",
+      "category_id": 1,
+      "author_id": 2,
+      "tags": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Understanding Artificial Intelligence",
+      "description": "A beginner's guide to AI, its applications, and the ethical implications of its rapid development.",
+      "category_id": 2,
+      "author_id": 4,
+      "tags": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "title": "The Wonders of Space Exploration",
+      "description": "A look into recent advancements in space travel and what the future holds for exploration beyond Earth.",
+      "category_id": 3,
+      "author_id": 3,
+      "tags": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Mindfulness and Mental Health",
+      "description": "Exploring the benefits of mindfulness practices for mental well-being and emotional resilience.",
+      "category_id": 1,
+      "author_id": 1,
+      "tags": [
+        4
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Sustainable Fashion: A New Approach",
+      "description": "How the fashion industry is adapting to promote sustainability and ethical practices.",
+      "category_id": 2,
+      "author_id": 5,
+      "tags": [
+        2
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Digital Nomad Lifestyle",
+      "description": "Tips for living and working remotely while traveling the world, balancing work and adventure.",
+      "category_id": 3,
+      "author_id": 1,
+      "tags": [
+        1,
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Gardening for Beginners",
+      "description": "An introduction to gardening, including essential tips for growing your own plants and vegetables.",
+      "category_id": 1,
+      "author_id": 2,
+      "tags": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": 12,
+      "title": "The Psychology of Color",
+      "description": "How colors influence our emotions and behaviors, and their applications in design and marketing.",
+      "category_id": 2,
+      "author_id": 6,
+      "tags": [
+        3
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Adventures in Hiking",
+      "description": "A personal account of hiking adventures, exploring breathtaking landscapes and overcoming challenges.",
+      "category_id": 3,
+      "author_id": 3,
+      "tags": [
+        1
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Photography Tips for Beginners",
+      "description": "Essential tips for aspiring photographers to improve their skills and capture stunning images.",
+      "category_id": 1,
+      "author_id": 4,
+      "tags": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": 15,
+      "title": "The Science of Happiness",
+      "description": "Exploring the factors that contribute to happiness and well-being from a psychological perspective.",
+      "category_id": 2,
+      "author_id": 5,
+      "tags": [
+        1,
+        2
+      ]
+    }
+  ],
   "comments": [
     {
       "blog_id": 1,

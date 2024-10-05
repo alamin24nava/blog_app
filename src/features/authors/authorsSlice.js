@@ -25,17 +25,17 @@ export const postAuthors = createAsyncThunk(
   }
 );
 
-// export const updateCategories = createAsyncThunk(
-//   "categories/updateCategories",
-//   async (editableCategory) => {
-//     const response = await fetch(`${REACT_APP_API_BASE_URL}/categories`, {
-//       method:"PUT",
-//       headers:{'Content-Type': 'application/json'},
-//       body:JSON.stringify(editableCategory)
-//     });
-//     return response.json();
-//   }
-// );
+export const updateAuthors = createAsyncThunk(
+  "categories/updateAuthors",
+  async (editableAuthor) => {
+    const response = await fetch(`${REACT_APP_API_BASE_URL}/authors/${editableAuthor.id}`, {
+      method:"PUT",
+      headers:{'Content-Type': 'application/json'},
+      body:JSON.stringify(editableAuthor)
+    });
+    return response.json();
+  }
+);
 
 export const deleteAuthors = createAsyncThunk(
   "authors/deleteAuthors",
@@ -90,20 +90,23 @@ export const authorsSlice = createSlice({
       state.isError = true;
       state.isLoading = false;
     });
-    // // UpdateCategories
-    // builder.addCase(updateCategories.pending, (state) => {
-    //   state.isError = false;
-    //   state.isLoading = true;
-    // });
-    // builder.addCase(updateCategories.fulfilled, (state, action) => {
-    //   state.isError = false;
-    //   state.isLoading = false;
-    //   console.log(action.payload)
-    // });
-    // builder.addCase(updateCategories.rejected, (state, action) => {
-    //   state.isError = true;
-    //   state.isLoading = false;
-    // });
+    // updateAuthors
+    builder.addCase(updateAuthors.pending, (state) => {
+      state.isError = false;
+      state.isLoading = true;
+    });
+    builder.addCase(updateAuthors.fulfilled, (state, action) => {
+      state.isError = false;
+      state.isLoading = false;
+      // state.authorList = action.payload
+      console.log(action.payload)
+      const findIndex = state.authorList.findIndex((item)=> item.id === action.payload.id)
+      state.authorList[findIndex].name = action.payload.name
+    });
+    builder.addCase(updateAuthors.rejected, (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+    });
 
 
   },

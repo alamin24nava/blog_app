@@ -1,10 +1,15 @@
 import DataNotFound from "./DataNoFound";
 import DelayedSearch from "./DelayedSearch";
-
-const DataTable = ({ _dataLists, _onHandleDelete, _onHandleEdit, _title }) => {
+const DataTable = ({
+  _dataLists,
+  _onHandleDelete,
+  _onHandleEdit,
+  _title,
+  _th2,
+  _th3,
+}) => {
   return (
     <>
-    
       {_dataLists.length > 0 ? (
         <div>
           <DelayedSearch />
@@ -14,35 +19,38 @@ const DataTable = ({ _dataLists, _onHandleDelete, _onHandleEdit, _title }) => {
               <thead>
                 <tr>
                   <th>S/N</th>
-                  <th>Category Name</th>
-                  <th>Author Name</th>
+                  <th>{_th2}</th>
+                  <th>{_th3}</th>
                   <th className="text-end">Action</th>
                 </tr>
               </thead>
               <tbody>
-                {_dataLists.map((item, index) => (
-                  <tr key={index}>
-                    <th>{index + 1}</th>
-                    <td>{item.name}</td>
-                    <td>{item.name}</td>
-                    <td>
-                      <div className="flex gap-3 justify-end">
-                        <button
-                          onClick={() => _onHandleEdit(item)}
-                          className="btn btn-neutral btn-sm"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => _onHandleDelete(item.id)}
-                          className="btn btn-error btn-sm"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                {_dataLists &&
+                  _dataLists.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <th>{index + 1}</th>
+                        <td>{item.name}</td>
+                        <td>{item.category_id}</td>
+                        <td>
+                          <div className="flex gap-3 justify-end">
+                            <button
+                              onClick={() => _onHandleEdit(item)}
+                              className="btn btn-neutral btn-sm"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => _onHandleDelete(item.id)}
+                              className="btn btn-error btn-sm"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </div>
