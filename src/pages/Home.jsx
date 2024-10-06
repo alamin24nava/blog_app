@@ -47,9 +47,14 @@ const Home = () => {
 
   const handleDeleteCategory = (id) => {
     dispatch(deleteCategories(id));
+    setOnchangeValues({categoryName: ""})
+    setEditableItem(null)
   };
   const handleDeleteAuthor = (id) => {
     dispatch(deleteAuthors(id));
+    setOnchangeValues({authorName: ""})
+    setSelected('-- Select --')
+    setEditableItem(null)
   };
 
   const handleEditCategory = (category) => {
@@ -59,10 +64,8 @@ const Home = () => {
   const handleEditAuthor = (author) => {
     setOnchangeValues({ authorName: author.name });
     setEditableItem(author);
-  };
-  const handleSelectedMenu = (selectedItem) => {
-    setSelected(selectedItem.name);
-    setSelectedId(selectedItem.id)
+    const findedCategory = categoryList?.find((findId)=> findId?.id == author?.category_id)
+    setSelected(findedCategory?.name)
   };
   useEffect(() => {
     dispatch(getCategories());
@@ -71,6 +74,7 @@ const Home = () => {
 
   const handleSubmit = (e, action) => {
     e.preventDefault();
+
     if (action == "categoryForm") {
       if (onchangeValues.categoryName.trim() == "") {
         return toast.error("Please Provide Something!");
@@ -103,14 +107,16 @@ const Home = () => {
         (item) => item.name === onchangeValues.authorName
       );
       if (isDuplicate) {
+        setOnchangeValues({authorName: ""})
+        setSelected("--Select--")
         return toast.error("Already Added This Author");
       }
       const newAuthor = { name: onchangeValues.authorName , category_id:selectedId};
 
-      dispatch(postAuthors(newAuthor));
-      toast.success("Successfully created!");
-
       if (editableItem === null) {
+        if(selected == "--Select--"){
+          return toast.error("Please Select Category");
+        }
         dispatch(postAuthors(newAuthor));
         toast.success("Successfully created!");
       } else {
@@ -124,7 +130,12 @@ const Home = () => {
         toast.success("Successfully Updated!");
       }
     }
-    setOnchangeValues({});
+    setOnchangeValues({
+      categoryName: "",
+      authorName: "",
+    })
+    setSelected("--Select--")
+    setEditableItem(null)
   };
   return (
     <>
@@ -144,7 +155,7 @@ const Home = () => {
                   name="categoryName"
                   placeholder="Category Name"
                 />
-                <button className="btn btn-primary">Create Category</button>
+                <button className="btn btn-primary">{editableItem === null ? "Create Category" : "Updated Category"}</button>
               </form>
             </div>
             <div className="border p-6 rounded-md w-full">
@@ -168,7 +179,7 @@ const Home = () => {
                   _dropDownItems={categoryList}
                   _selected={selected}
                   _setSelected={setSelected}
-                  _onHandleSelectedMenu = {handleSelectedMenu}
+                  _setSelectedId={setSelectedId}
                 />
                 <Input
                   _onHandleChange={handleChange}
@@ -176,7 +187,7 @@ const Home = () => {
                   name="authorName"
                   placeholder="Author Name"
                 />
-                <button className="btn btn-primary">Create Author</button>
+                <button className="btn btn-primary">{editableItem === null ? "Create Author" : "Updated Author"}</button>
               </form>
             </div>
             <div className="border p-6 rounded-md w-full">
@@ -184,6 +195,7 @@ const Home = () => {
                 _onHandleDelete={handleDeleteAuthor}
                 _onHandleEdit={handleEditAuthor}
                 _dataLists={authorList}
+                _categoryList = {categoryList}
                 _title="Authors List"
                 _th2="Author Name"
                 _th3="Category Name"

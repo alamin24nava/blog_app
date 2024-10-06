@@ -13,17 +13,17 @@ export const getBlogs = createAsyncThunk(
   }
 );
 
-// export const postTags = createAsyncThunk(
-//   "tags/postTags",
-//   async (newTag) => {
-//     const response = await fetch(`${REACT_APP_API_BASE_URL}/tags`, {
-//       method:"POST",
-//       headers:{'Content-Type': 'application/json'},
-//       body:JSON.stringify(newTag)
-//     });
-//     return response.json();
-//   }
-// );
+export const postBlogs = createAsyncThunk(
+  "blogs/postBlogs",
+  async (newBlog) => {
+    const response = await fetch(`${REACT_APP_API_BASE_URL}/posts`, {
+      method:"POST",
+      headers:{'Content-Type': 'application/json'},
+      body:JSON.stringify(newBlog)
+    });
+    return response.json();
+  }
+);
 
 // export const updateTags = createAsyncThunk(
 //   "tags/updateTags",
@@ -62,20 +62,20 @@ export const blogsSlice = createSlice({
       state.isError = true;
       state.isLoading = false;
     });
-    // // postTags
-    // builder.addCase(postTags.pending, (state, action) => {
-    //   state.isError = false;
-    //   state.isLoading = true;
-    // });
-    // builder.addCase(postTags.fulfilled, (state, action) => {
-    //   state.isError = false;
-    //   state.isLoading = false;
-    //   state.tagList.push(action.payload);
-    // });
-    // builder.addCase(postTags.rejected, (state, action) => {
-    //   state.isError = true;
-    //   state.isLoading = false;
-    // });
+    // // postBlogs
+    builder.addCase(postBlogs.pending, (state, action) => {
+      state.isError = false;
+      state.isLoading = true;
+    });
+    builder.addCase(postBlogs.fulfilled, (state, action) => {
+      state.isError = false;
+      state.isLoading = false;
+      state.blogList.push(action.payload);
+    });
+    builder.addCase(postBlogs.rejected, (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+    });
     // // // // deleteTags
     // builder.addCase(deleteTags.pending, (state) => {
     //   state.isError = false;

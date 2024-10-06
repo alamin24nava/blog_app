@@ -3,7 +3,7 @@ const { REACT_APP_API_BASE_URL } = import.meta.env;
 const initialState = {
   authorList: [],
   isLoading: false,
-  isError: false,
+  isError: false
 };
 export const getAuthors = createAsyncThunk(
   "authors/getAuthors",
@@ -16,12 +16,16 @@ export const getAuthors = createAsyncThunk(
 export const postAuthors = createAsyncThunk(
   "authors/postAuthors",
   async (newAuthor) => {
-    const response = await fetch(`${REACT_APP_API_BASE_URL}/authors`, {
-      method:"POST",
-      headers:{'Content-Type': 'application/json'},
-      body:JSON.stringify(newAuthor)
-    });
-    return response.json();
+    try{
+      const response = await fetch(`${REACT_APP_API_BASE_URL}/authors`, {
+        method:"POST",
+        headers:{'Content-Type': 'application/json'},
+        body:JSON.stringify(newAuthor)
+      });
+      return response.json();
+    }catch(err){
+      console.log(err.message("sdasd"))
+    }
   }
 );
 

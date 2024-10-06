@@ -13,12 +13,16 @@ import {
 } from "../features/tags/tagsSlice";
 import {categoriesGetuseSelector, getCategories} from "../features/categories/categoriesSlice"
 import {authorsGetuseSelector, getAuthors} from "../features/authors/authorsSlice"
+import {postBlogs} from "../features/blogs/blogsSlice"
 import TextArea from "../components/TextArea";
 const CreateBlog = () => {
 //   const [tagName, setTagName] = useState("");
   const [editableTag, setEditableTag] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
 //   const [selected, setSelected] = useState('-- Select --')
+const [as, setAs] = useState('-- Select 2 --')
   const [onchangeValues, setOnchangeValues] = useState({
+    // postedCategory:[{name:'jjjjj'}],
     postedCategory:"-- Select --",
     postedAuthor:"-- Select --",
     postedTags:[],
@@ -26,7 +30,6 @@ const CreateBlog = () => {
     postDesc: "",
     tagName:""
   });
-  console.log(onchangeValues)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setOnchangeValues((prevState) => ({
@@ -34,17 +37,13 @@ const CreateBlog = () => {
       [name]: value,
     }));
   };
-  const handleSelectedMenu = (selectedItem)=>{
-    console.log(selectedItem.name)
-    setOnchangeValues(selectedItem.name)
-  }
+//   const handleSelectedMenu = (selectedItem)=>{
+//     setOnchangeValues(selectedItem.name)
+//   }
   const { tagList } = useSelector(tagsGetuseSelector);
   const { categoryList } = useSelector(categoriesGetuseSelector);
   const { authorList } = useSelector(authorsGetuseSelector);
   const dispatch = useDispatch();
-//   const handleChange = (e) => {
-//     setTagName(e.target.value);
-//   };
   useEffect(() => {
     dispatch(getTags());
   }, []);
@@ -57,7 +56,8 @@ const CreateBlog = () => {
 
   const handleDeleteTag = (tagId) => {
     dispatch(deleteTags(tagId));
-
+    setOnchangeValues({tagName:""})
+    setEditableTag(null)
   };
   const handleEditTag = (tag) => {
     setEditableTag(tag);
@@ -71,7 +71,8 @@ const CreateBlog = () => {
           }
           const isDuplicate = tagList.find((item) => item.name === onchangeValues.tagName);
           if (isDuplicate) {
-            setTagName("");
+            setOnchangeValues({tagName:''});
+            setEditableTag(null)
             return toast.error("Already Added This Tag");
           }
           if (editableTag == null) {
@@ -82,17 +83,43 @@ const CreateBlog = () => {
             const newTag = { name: onchangeValues.tagName, id: editableTag.id };
             dispatch(updateTags(newTag));
           }
+          setOnchangeValues({tagName:''});
+    }else if(action == "postForm"){
+        const newBlog = {
+            category_id:selectedId,
+            // author_id:onchangeValues.postedAuthor,
+            // tags:onchangeValues.postedTags,
+            title:onchangeValues.postTitle,
+            description:onchangeValues.postDesc
+        }
+        dispatch(postBlogs(newBlog))
     }
-
-    setOnchangeValues({});
+    setOnchangeValues({tagName:''});
+    setEditableTag(null)
   };
   return (
     <div className="flex gap-6">
       <form className="border flex flex-col gap-4 p-6 rounded-md w-full"
           onSubmit={(e) => handleSubmit(e, "postForm")}
         >
-        <DropDownMenu _dropDownItems={categoryList} _selected={onchangeValues.postedCategory} _onHandleSelectedMenu={handleSelectedMenu}/>
-        <DropDownMenu _dropDownItems={authorList} _selected={onchangeValues.postedAuthor} _onHandleSelectedMenu={handleSelectedMenu}/>
+        <DropDownMenu
+            _dropDownItems={categoryList}
+            _selected={as}
+            _setSelected={setAs}
+            _setSelectedId={setSelectedId}
+        />
+        {/* <DropDownMenu
+          _dropDownItems={categoryList} 
+          _selected={onchangeValues.postedCategory} 
+          _setSelected={setOnchangeValues}
+          _setSelectedId={setSelectedId}
+          name="postedCategory"
+        /> */}
+        {/* <DropDownMenu 
+          _dropDownItems={authorList} 
+          _selected={onchangeValues.postedAuthor} 
+        //   _onHandleSelectedMenu={handleSelectedMenu}
+        /> */}
         <Input
             name="postTitle"
             placeholder="Post Title"
@@ -100,7 +127,7 @@ const CreateBlog = () => {
         />
         <TextArea name="postDesc"  _onHandleChange={handleChange} placeholder="Post Description"/>
         <button className="btn btn-primary">Create Post</button>
-    </form>
+      </form>
 
       <div className="border p-6 rounded-md w-full">
         <form
@@ -113,7 +140,7 @@ const CreateBlog = () => {
             name="tagName"
             placeholder="Tag Name"
           />
-          <button className="btn btn-primary">Create Tag</button>
+          <button className="btn btn-primary">{editableTag == null ? "Create Tag":"Update Tag"}</button>
         </form>
         <DataTable
           _onHandleEdit={handleEditTag}

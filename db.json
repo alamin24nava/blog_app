@@ -9,20 +9,15 @@
       "id": 2
     },
     {
-      "name": "Movies",
-      "id": 3
+      "id": 3,
+      "name": "games"
+    },
+    {
+      "name": "cooking",
+      "id": 4
     }
   ],
   "authors": [
-    {
-      "name": "nanu 1",
-      "id": 1
-    },
-    {
-      "name": "Alamin",
-      "category_id": 1,
-      "id": 2
-    },
     {
       "name": "jibon kG",
       "category_id": 2,
@@ -32,24 +27,29 @@
       "id": 4,
       "name": "salim",
       "category_id": 1
+    },
+    {
+      "name": "hm",
+      "category_id": 4,
+      "id": 5
     }
   ],
   "tags": [
     {
-      "name": "dfd",
-      "id": 1
-    },
-    {
-      "name": "as",
+      "name": "html",
       "id": 2
     },
     {
-      "name": "rr",
-      "id": 3
+      "name": "php",
+      "id": 4
     },
     {
-      "name": "er",
-      "id": 4
+      "name": "css",
+      "id": 5
+    },
+    {
+      "name": "js",
+      "id": 6
     }
   ],
   "posts": [

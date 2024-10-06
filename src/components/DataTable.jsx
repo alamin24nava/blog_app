@@ -7,7 +7,9 @@ const DataTable = ({
   _title,
   _th2,
   _th3,
+  _categoryList,
 }) => {
+
   return (
     <>
       {_dataLists.length > 0 ? (
@@ -20,18 +22,22 @@ const DataTable = ({
                 <tr>
                   <th>S/N</th>
                   <th>{_th2}</th>
-                  <th>{_th3}</th>
+                  {_categoryList &&  <th>{_th3}</th>}
+                 
                   <th className="text-end">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {_dataLists &&
-                  _dataLists.map((item, index) => {
+                  _dataLists?.map((item, index) => {
+                    const findedCategory = _categoryList?.find((findId)=> findId.id === item.category_id)
                     return (
                       <tr key={index}>
                         <th>{index + 1}</th>
                         <td>{item.name}</td>
-                        <td>{item.category_id}</td>
+                        {findedCategory && 
+                        
+                        <td>{findedCategory?.name}</td>}
                         <td>
                           <div className="flex gap-3 justify-end">
                             <button
